@@ -14,7 +14,7 @@ return {
       desc = "harpoon file",
     },
     {
-      "<C-e>",
+      "<C-M-e>",
       function()
         local harpoon = require("harpoon")
         harpoon.ui:toggle_quick_menu(harpoon:list())
@@ -22,21 +22,21 @@ return {
       desc = "harpoon quick menu",
     },
     {
-      "<C-h>",
+      "<C-M-h>",
       function()
         require("harpoon"):list():select(1)
       end,
       desc = "harpoon to file 1",
     },
     {
-      "<C-t>",
+      "<C-M-y>",
       function()
         require("harpoon"):list():select(2)
       end,
       desc = "harpoon to file 2",
     },
     {
-      "<C-n>",
+      "<C-M-n>",
       function()
         require("harpoon"):list():select(3)
       end,
