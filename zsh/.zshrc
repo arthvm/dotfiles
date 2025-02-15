@@ -71,6 +71,8 @@ alias ls='ls --color'
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+eval "$(thefuck --alias)"
+
 
 # Pyenv config
 export PYENV_ROOT="$HOME/.pyenv"
