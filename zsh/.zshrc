@@ -56,7 +56,7 @@ setopt hist_ignore_space
 setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
-setopt hist_find_no_dups 
+setopt hist_find_no_dups
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -82,3 +82,8 @@ eval "$(pyenv init - zsh)"
 # Nvm (Node version manager) config
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+# Go config
+export GOPATH=$(go env GOPATH)
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOBIN

@@ -9,6 +9,7 @@ return {
 		"javascript",
 		"typescript",
 		"tsx",
+		"c_sharp",
 	},
 	auto_install = true,
 	highlight = {

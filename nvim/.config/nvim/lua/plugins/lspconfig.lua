@@ -21,7 +21,30 @@ return {
 			})
 
 			lspconfig.ts_ls.setup({})
+
 			lspconfig.eslint.setup({})
+
+			lspconfig.biome.setup({
+				default_config = {
+					cmd = { "biome", "lsp-proxy" },
+					filetypes = {
+						"astro",
+						"css",
+						"graphql",
+						"javascript",
+						"javascriptreact",
+						"json",
+						"jsonc",
+						"svelte",
+						"typescript",
+						"typescript.tsx",
+						"typescriptreact",
+						"vue",
+					},
+					root_dir = lspconfig.util.root_pattern("biome.json", "biome.jsonc"),
+					single_file_support = false,
+				},
+			})
 
 			lspconfig.rust_analyzer.setup({})
 
@@ -36,6 +59,7 @@ return {
 					},
 				},
 			})
+			lspconfig.templ.setup({})
 
 			lspconfig.tailwindcss.setup({
 				settings = {
@@ -45,7 +69,17 @@ return {
 				},
 			})
 
-			lspconfig.templ.setup({})
+			-- remove when done with csharp at school
+			lspconfig.omnisharp.setup({
+				cmd = { "dotnet", vim.fn.expand("~/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll") },
+				enable_editorconfig_support = true,
+				enable_ms_build_load_projects_on_demand = false,
+				enable_roslyn_analyzers = false,
+				organize_imports_on_format = true,
+				enable_import_completion = true,
+				sdk_include_prereleases = true,
+				analyze_open_documents_only = false,
+			})
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = augroup,
