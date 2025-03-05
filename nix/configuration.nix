@@ -203,7 +203,9 @@
     railway
     thefuck
     pyenv
-    pnpm
+    pnpm_9
+    prisma-engines
+    prisma
   ];
 
   # Virtualisation
