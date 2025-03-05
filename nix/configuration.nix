@@ -56,7 +56,6 @@
     };
   };
 
-  services.mullvad-vpn.enable = true;
   services.systembus-notify.enable = true;
 
   # Use the latest linux kernel.
@@ -119,13 +118,10 @@
   environment.systemPackages = with pkgs; [
     act
     alejandra
-    argocd
     awscli
-    #banana-cursor
     banana-cursor-dreams
     bubblewrap
-    #calibre
-    chromium
+    vivaldi
     clickgen
     distrobox
     dotool
@@ -153,7 +149,6 @@
     kustomize
     lua-language-server
     mako # notification system developed by swaywm maintainer
-    mullvad-vpn
     mm-common
     neovim
     nil
@@ -289,9 +284,8 @@
     keyboards = {
       internalKeyboard = {
         devices = [
-          "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
-          "/dev/input/by-id/usb-Framework_Laptop_16_Keyboard_Module_-_ANSI_FRAKDKEN0100000000-event-kbd"
-          "/dev/input/by-id/usb-Framework_Laptop_16_Keyboard_Module_-_ANSI_FRAKDKEN0100000000-if02-event-kbd"
+          "/dev/input/by-id/usb-Apple_0003_05AC_024F_0001-event-kbd"
+          "/dev/input/by-id/usb-Apple_0003_05AC_024F_0002-event-kbd"
         ];
         extraDefCfg = "process-unmapped-keys yes";
         config = ''
