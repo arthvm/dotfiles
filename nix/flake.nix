@@ -69,8 +69,8 @@
         hardware = null;
         monitors = [
           {
-            name = "Dell";
-            dimensions = "preffered";
+            name = "DP-1";
+            dimensions = "1920x1080";
             position = "0x0";
             scale = 1.0;
             framerate = 60;

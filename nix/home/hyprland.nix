@@ -113,6 +113,9 @@ in {
       };
       sensitivity = 0;
     };
+    cursor = {
+      no_hardware_cursors = true;
+    };
     "misc:middle_click_paste" = false;
     env = [
       "QT_QPA_PLATFORMTHEME,qt6ct"
