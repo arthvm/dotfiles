@@ -206,6 +206,8 @@
     avahi
     nssmdns
     railway
+    thefuck
+    pyenv
   ];
 
   # Virtualisation

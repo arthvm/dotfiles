@@ -1,100 +1,100 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }: {
   enable = true;
-  history.size = 10000;
-  history.path = "${config.xdg.dataHome}/zsh/history";
+
+  # Configuração do histórico
+  history = {
+    size = 10000;
+    path = "${config.xdg.dataHome}/zsh/history";
+  };
+
+  # Aliases
   shellAliases = {
+    # Utilitários gerais
     vim = "nvim";
     ls = "ls --color";
-    ctrl-l = "clear";
-    C-l = "ctrl-l";
-    control-l = "clear";
-    clean = "clear";
-    r2 = "aws --profile r2 --endpoint-url https://03af1b41c1aa6fe21d9b3a645dca423e.r2.cloudflarestorage.com";
+    please = "sudo";
+    rebuild = "sudo nixos-rebuild switch --flake ~/.dotfiles/nix#nixos";
   };
+
+  # Configurações extras do Zsh
   initExtra = ''
-    ZSH_DISABLE_COMPFIX=true
-    export EDITOR=nvim
-    if [ -n "$TTY" ]; then
-      export GPG_TTY=$(tty)
-    else
-      export GPG_TTY="$TTY"
-    fi
-
-    export BUN_INSTALL=$HOME/.bun
-    export PATH="$HOME/go/bin:$BUN_INSTALL/bin:$PATH"
-
-    # SSH_AUTH_SOCK set to GPG to enable using gpgagent as the ssh agent.
-    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-    gpgconf --launch gpg-agent
-
-    bindkey -e
-
-    [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}
-
-    # disable sort when completing `git checkout`
-    zstyle ':completion:*:git-checkout:*' sort false
-
-    # set descriptions format to enable group support
-    # NOTE: don't use escape sequences here, fzf-tab will ignore them
-    zstyle ':completion:*:descriptions' format '[%d]'
-
-    # set list-colors to enable filename colorizing
-    zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
-
-    # force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
-    zstyle ':completion:*' menu no
-
-    # preview directory's content with eza when completing cd
-    zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always $realpath'
-    zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-    zstyle ':fzf-tab:complete:ls:*' fzf-preview 'cat $realpath'
-
-    # switch group using `<` and `>`
-    zstyle ':fzf-tab:*' switch-group '<' '>'
-
     # Keybindings
     bindkey -e
     bindkey '^p' history-search-backward
     bindkey '^n' history-search-forward
-    bindkey '^[w' kill-region
 
-    zle_highlight+=(paste:none)
+    function clear-screen-and-scrollback() {
+      builtin echoti civis >"$TTY"
+      builtin print -rn -- $'\e[H\e[2J' >"$TTY"
+      builtin zle .reset-prompt
+      builtin zle -R
+      builtin print -rn -- $'\e[3J' >"$TTY"
+      builtin echoti cnorm >"$TTY"
+    }
+    zle -N clear-screen-and-scrollback
+    bindkey '^x' clear-screen-and-scrollback
 
-    setopt appendhistory
-    setopt sharehistory
-    setopt hist_ignore_space
-    setopt hist_ignore_all_dups
-    setopt hist_save_no_dups
-    setopt hist_ignore_dups
-    setopt hist_find_no_dups
+    # Configuração do tema Powerlevel10k
+    [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}
+
+    # Configuração do autocomplete
+    zstyle ':completion:*:git-checkout:*' sort false
+    zstyle ':completion:*:descriptions' format '[%d]'
+    zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+    zstyle ':completion:*' menu no
+
+    # Pré-visualização com fzf-tab e eza
+    zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always $realpath'
+    zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+    zstyle ':fzf-tab:complete:ls:*' fzf-preview 'cat $realpath'
+    zstyle ':fzf-tab:*' switch-group '<' '>'
+
+    # Shell integrations
+    eval "$(fzf --zsh)"
+    eval "$(zoxide init --cmd cd zsh)"
+    eval "$(thefuck --alias)"
+
+    # Pyenv config
+    export PYENV_ROOT="$HOME/.pyenv"
+    [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init - zsh)"
+
+    # NVM (Node Version Manager)
+    export NVM_DIR=~/.nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+    # Go config
+    export GOPATH=$(go env GOPATH)
+    export GOBIN=$GOPATH/bin
+    export PATH=$PATH:$GOBIN
   '';
+
+  # Plugins do Oh-My-Zsh
   oh-my-zsh = {
     enable = true;
     plugins = [
       "git"
       "sudo"
-      "docker"
       "golang"
       "kubectl"
       "kubectx"
       "rust"
       "command-not-found"
       "pass"
-      "helm"
     ];
   };
+
+  # Plugins Zsh adicionais
   plugins = [
-    #{
-    # will source zsh-autosuggestions.plugin.zsh
-    #name = "zsh-autosuggestions";
-    #src = pkgs.zsh-autosuggestions;
-    #file = "share/zsh-autosuggestions/zsh-autosuggestions.zsh";
-    #}
+    {
+      name = "zsh-autosuggestions";
+      src = pkgs.zsh-autosuggestions;
+      file = "share/zsh-autosuggestions/zsh-autosuggestions.zsh";
+    }
     {
       name = "zsh-completions";
       src = pkgs.zsh-completions;
@@ -109,11 +109,6 @@
       name = "powerlevel10k";
       src = pkgs.zsh-powerlevel10k;
       file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-    }
-    {
-      name = "powerlevel10k-config";
-      src = lib.cleanSource ../../.p10k.zsh;
-      file = "p10k.zsh";
     }
     {
       name = "fzf-tab";
