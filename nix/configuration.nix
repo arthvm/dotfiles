@@ -121,7 +121,7 @@
     awscli
     banana-cursor-dreams
     bubblewrap
-    vivaldi
+    chromium
     clickgen
     distrobox
     dotool
