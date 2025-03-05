@@ -203,6 +203,7 @@
     railway
     thefuck
     pyenv
+    pnpm
   ];
 
   # Virtualisation
