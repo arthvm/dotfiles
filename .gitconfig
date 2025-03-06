@@ -2,6 +2,7 @@
 	email = arthvm@proton.me
 	name = Arthur Mariano
 	gpgSign = true
+	signingkey = BB4252E3F4CAAA8D
 #[credential]
 #	helper = /usr/lib/git-core/git-credential-libsecret
 [pull]
@@ -19,3 +20,5 @@
 	required = true
 [gpg]
 	program = gpg
+[commit]
+	gpgsign = true
