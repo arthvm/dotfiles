@@ -8,6 +8,9 @@ return {
 		"rust-analyzer",
 		"rustfmt",
 		"stylua",
+		"eslint-lsp",
+		"prettierd",
+		"tailwindcss-language-server",
 		"typescript-language-server",
 	},
 }
