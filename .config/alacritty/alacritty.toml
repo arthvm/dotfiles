@@ -1,8 +1,8 @@
-import = [
-  "~/.config/alacritty/themes/themes/tokyo-night.toml"
+general.import = [
+  "~/.config/alacritty/themes/themes/tokyo_night.toml"
 ]
 
-live_config_reload = true
+general.live_config_reload = true
 
 [bell]
 animation = "EaseOutExpo"
@@ -10,42 +10,6 @@ duration = 0
 
 [colors]
 draw_bold_text_with_bright_colors = true
-
-# [[colors.indexed_colors]]
-# color = "0xF8BD96"
-# index = 16
-#
-# [[colors.indexed_colors]]
-# color = "0xF5E0DC"
-# index = 17
-#
-# [colors.bright]
-# black = "0x988BA2"
-# blue = "0x96CDFB"
-# cyan = "0x89DCEB"
-# green = "0xABE9B3"
-# magenta = "0xF5C2E7"
-# red = "0xF28FAD"
-# white = "0xD9E0EE"
-# yellow = "0xFAE3B0"
-#
-# [colors.cursor]
-# cursor = "0xF5E0DC"
-# text = "0x1E1D2F"
-#
-# [colors.normal]
-# black = "0x6E6C7E"
-# blue = "0x96CDFB"
-# cyan = "0x89DCEB"
-# green = "0xABE9B3"
-# magenta = "0xF5C2E7"
-# red = "0xF28FAD"
-# white = "0xD9E0EE"
-# yellow = "0xFAE3B0"
-#
-# [colors.primary]
-# background = "0x1E1D2F"
-# foreground = "0xD9E0EE"
 
 [cursor]
 blink_interval = 500
@@ -60,10 +24,10 @@ shape = "Block"
 TERM = "xterm-256color"
 
 [font]
-size = 18
+size = 14
 
 [font.bold]
-family = "JetBrainsMono Nerd Font"
+family = "JetBrains Mono Nerd Font"
 style = "Bold"
 
 [font.glyph_offset]
@@ -71,10 +35,10 @@ x = 0
 y = 0
 
 [font.italic]
-family = "JetBrainsMono Nerd Font"
+family = "JetBrains Mono Nerd Font"
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "JetBrains Mono Nerd Font"
 style = "Regular"
 
 [font.offset]
@@ -91,7 +55,7 @@ mouse = "Middle"
 [selection]
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
-[shell]
+[terminal.shell]
 program = "/bin/zsh"
 
 [window]
