@@ -105,3 +105,6 @@ export GPG_TTY=$(tty)
 # Nvm (Node version manager) config
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+# Dotnet tools config
+export PATH="$PATH:$HOME/.dotnet/tools"
