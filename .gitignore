@@ -5,3 +5,6 @@
 .config/discord
 .config/discordcanary
 .config/chromium
+.config/evolution
+.config/nextjs-nodejs
+.config/go/telemetry
