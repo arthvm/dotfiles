@@ -396,7 +396,7 @@
   "menus.clock.time.hideSeconds": true,
   "menus.clock.weather.location": "Sao Paulo",
   "menus.clock.weather.unit": "metric",
-  "menus.dashboard.shortcuts.left.shortcut4.command": "wofi -show drun",
+  "menus.dashboard.shortcuts.left.shortcut4.command": "tofi-drun",
   "theme.notification.border_radius": "0.2em",
   "notifications.showActionsOnHover": true,
   "notifications.autoDismiss": true,
