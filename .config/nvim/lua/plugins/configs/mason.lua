@@ -8,6 +8,7 @@ return {
 		"rust-analyzer",
 		"rustfmt",
 		"stylua",
+		"biome",
 		"eslint-lsp",
 		"prettierd",
 		"tailwindcss-language-server",

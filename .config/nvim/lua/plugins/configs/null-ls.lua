@@ -8,6 +8,7 @@ return {
 		null_ls.builtins.formatting.golines,
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.prettierd,
+		null_ls.builtins.formatting.biome,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
