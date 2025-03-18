@@ -8,3 +8,4 @@
 .config/evolution
 .config/nextjs-nodejs
 .config/go/telemetry
+.config/dconf/*
