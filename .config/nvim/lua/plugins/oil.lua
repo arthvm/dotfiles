@@ -7,6 +7,10 @@ return {
 	dependencies = { { "echasnovski/mini.icons", opts = {} } },
 	config = function()
 		vim.keymap.set("n", "<space>o", require("oil").toggle_float)
-		require("oil").setup()
+		require("oil").setup({
+			view_options = {
+				show_hidden = true,
+			},
+		})
 	end,
 }

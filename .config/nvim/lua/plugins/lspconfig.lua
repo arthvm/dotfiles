@@ -28,6 +28,8 @@ return {
 
 			lspconfig.rust_analyzer.setup({})
 
+			lspconfig.sourcekit.setup({})
+
 			lspconfig.gopls.setup({
 				filetypes = { "go", "gomod", "gowork", "gotmpl" },
 				settings = {
@@ -38,6 +40,12 @@ return {
 						gofumpt = true,
 					},
 				},
+			})
+
+			lspconfig.astro.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+				filetypes = { "astro" },
 			})
 
 			lspconfig.biome.setup({
@@ -80,6 +88,21 @@ return {
 					tailwindCSS = {
 						includeLanguages = {
 							templ = "html",
+						},
+					},
+				},
+			})
+
+			lspconfig.prismals.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				default_config = {
+					cmd = { "prisma-language-server", "--stdio" },
+					filetypes = { "prisma" },
+					root_makers = { ".git", "package.json" },
+					settings = {
+						prisma = {
+							prismaFmtBinPath = "",
 						},
 					},
 				},

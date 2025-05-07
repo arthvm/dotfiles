@@ -9,10 +9,13 @@ return {
 		"rustfmt",
 		"stylua",
 		"biome",
+		"prismals",
 		"eslint-lsp",
 		"prettierd",
 		"tailwindcss-language-server",
 		"typescript-language-server",
 		"omnisharp",
+		"astro",
 	},
+	automatic_installation = true,
 }
